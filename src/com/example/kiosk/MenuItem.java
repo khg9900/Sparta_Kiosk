@@ -3,9 +3,9 @@ package com.example.kiosk;
 public class MenuItem {
 
     // 1. 속성
-    private String menuName;
-    private double menuPrice;
-    private String menuDesc;
+    private String menuName; // 메뉴 이름
+    private double menuPrice; // 메뉴 가격
+    private String menuDesc; // 메뉴 설명
 
     // 2. 생성자
     public MenuItem(String menuName, double menuPrice, String menuDesc){
@@ -15,8 +15,20 @@ public class MenuItem {
     }
 
     // 3. 기능
-    public void showMenu() {
+    public void showMenuItem() {
         System.out.printf("%-13s| W %.1f | %s%n",menuName, menuPrice, menuDesc);
+    }
+
+    public String getMenuName(){
+        return this.menuName;
+    }
+
+    public double getMenuPrice() {
+        return this.menuPrice;
+    }
+
+    public String getMenuDesc() {
+        return this.menuDesc;
     }
 
 }
