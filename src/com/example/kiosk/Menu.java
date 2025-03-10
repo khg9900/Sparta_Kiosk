@@ -19,8 +19,8 @@ public class Menu {
     // 3. 기능
 
     // List에 포함된 MenuItem을 순차적으로 보여주는 함수
-    public void showMenuItem(){
-        System.out.println("[ "+ this.categoryName.toUpperCase() + " MENU ]");
+    public void showMenuItems(){
+        System.out.println("\n[ "+ this.categoryName.toUpperCase() + " MENU ]");
         for (int i = 0; i < menuItems.size(); i++) {
             System.out.print(i+1 + ". ");
             menuItems.get(i).showMenuItem();
