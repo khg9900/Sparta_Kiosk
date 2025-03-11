@@ -1,9 +1,9 @@
 package com.example.kiosk;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+
 
 public class Kiosk {
 
@@ -90,6 +90,28 @@ public class Kiosk {
                         System.out.println("\n1. 주문       2. 메뉴판");
                         int orderChoice = sc.nextInt();
                         if (orderChoice == 1) {
+                            // 할인 정보
+                            System.out.println("\n할인 정보를 입력해주세요.");
+                            for (Discount c : Discount.values()) {
+                                System.out.println((c.ordinal()+1) + ". " + c.getType() + " : " + c.getPercent());
+                            }
+                            int discountChoice = sc.nextInt();
+                            Discount discount;
+                            switch (discountChoice){
+                                case 1 : {
+                                    cart.setTotalPrice(Discount.MILITARY.discountPrice(cart.getTotalPrice()));
+                                    break;
+                                }
+                                case 2 : {
+                                    cart.setTotalPrice(Discount.STUDENT.discountPrice(cart.getTotalPrice()));
+                                    break;
+                                }
+                                case 3 : {
+                                    cart.setTotalPrice(Discount.GENERAL.discountPrice(cart.getTotalPrice()));
+                                    break;
+                                }
+                            }
+
                             // 주문
                             cart.orderCart();
                         }

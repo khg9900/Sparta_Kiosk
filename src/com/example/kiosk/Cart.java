@@ -53,4 +53,8 @@ public class Cart {
         return this.totalPrice;
     }
 
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
 }
