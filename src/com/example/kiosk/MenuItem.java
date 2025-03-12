@@ -27,8 +27,4 @@ public class MenuItem {
         return this.menuPrice;
     }
 
-    public String getMenuDesc() {
-        return this.menuDesc;
-    }
-
 }

@@ -36,6 +36,5 @@ public class Main{
         // Kiosk 내 시작하는 함수 호출
         kiosk.start();
 
-
     }
 }
