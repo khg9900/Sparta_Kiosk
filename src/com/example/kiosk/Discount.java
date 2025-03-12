@@ -1,22 +1,24 @@
 package com.example.kiosk;
 
+import java.math.BigDecimal;
+
 public enum Discount {
 
     MILITARY("군인", "5%") {
         @Override
-        public double discountPrice(double totalPrice) {
-            return totalPrice * 0.95;
+        public BigDecimal discountPrice(BigDecimal totalPrice) {
+            return totalPrice.multiply(BigDecimal.valueOf(0.95));
         }
     },
     STUDENT("학생", "3%") {
         @Override
-        public double discountPrice(double totalPrice) {
-            return totalPrice * 0.97;
+        public BigDecimal discountPrice(BigDecimal totalPrice) {
+            return totalPrice.multiply(BigDecimal.valueOf(0.97));
         }
     },
     GENERAL("일반", "0%") {
         @Override
-        public double discountPrice(double totalPrice) {
+        public BigDecimal discountPrice(BigDecimal totalPrice) {
             return totalPrice;
         }
     };
@@ -37,6 +39,6 @@ public enum Discount {
         return this.percent;
     }
 
-    public abstract double discountPrice(double totalPrice);
+    public abstract BigDecimal discountPrice(BigDecimal totalPrice);
 
 }

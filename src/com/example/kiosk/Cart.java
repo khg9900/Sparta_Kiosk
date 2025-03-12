@@ -1,5 +1,6 @@
 package com.example.kiosk;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ public class Cart {
 
     // 1. 속성
     private List<MenuItem> cartItems = new ArrayList<>();
-    private double totalPrice = 0;
+    private BigDecimal totalPrice = new BigDecimal(0);
 
     // 2. 생성자
 
@@ -26,13 +27,13 @@ public class Cart {
     // 장바구니에 메뉴 담기
     public void addCartItem(MenuItem menuItem) {
         this.cartItems.add(menuItem);
-        this.totalPrice += menuItem.getMenuPrice();
+        this.totalPrice = this.totalPrice.add(BigDecimal.valueOf(menuItem.getMenuPrice()));
         System.out.println(menuItem.getMenuName() + "이 장바구니에 추가되었습니다.");
     }
 
     // 장바구니에서 메뉴 삭제하기
     public void removeCartItem(int number) {
-        this.totalPrice -= cartItems.get(number).getMenuPrice();
+        this.totalPrice = this.totalPrice.subtract(BigDecimal.valueOf(cartItems.get(number).getMenuPrice()));
         this.cartItems.remove(number);
         System.out.println("주문이 수정되었습니다.");
         showCartItems();
@@ -42,18 +43,18 @@ public class Cart {
     public void orderCartItems() {
         System.out.println("\n주문이 완료되었습니다. 금액은 W " + this.totalPrice + " 입니다.\n");
         this.cartItems.clear();
-        this.totalPrice = 0;
+        this.totalPrice = BigDecimal.valueOf(0);
     }
 
     public List<MenuItem> getCart() {
         return this.cartItems;
     }
 
-    public double getTotalPrice() {
+    public BigDecimal getTotalPrice() {
         return this.totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
 

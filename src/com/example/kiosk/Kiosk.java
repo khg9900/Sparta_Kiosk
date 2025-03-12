@@ -140,7 +140,7 @@ public class Kiosk {
                 } else {
                     System.out.println("선택된 메뉴가 없습니다.");
                 }
-            } else {
+            } else { // 메인 메뉴에서 잘못된 입력 처리
                 System.out.println("선택된 메뉴가 없습니다.");
             }
 
