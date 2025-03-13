@@ -4,39 +4,54 @@ import java.math.BigDecimal;
 
 public enum Discount {
 
-    MILITARY("군인", "5%") {
+    MILITARY(1, "군인", 5) {
         @Override
         public BigDecimal discountPrice(BigDecimal totalPrice) {
             return totalPrice.multiply(BigDecimal.valueOf(0.95));
         }
     },
-    STUDENT("학생", "3%") {
+    STUDENT(2, "학생", 3) {
         @Override
         public BigDecimal discountPrice(BigDecimal totalPrice) {
             return totalPrice.multiply(BigDecimal.valueOf(0.97));
         }
     },
-    GENERAL("일반", "0%") {
+    GENERAL(3, "일반", 0) {
         @Override
         public BigDecimal discountPrice(BigDecimal totalPrice) {
             return totalPrice;
         }
     };
 
+    private int seq;
     private String type;
-    private String percent;
+    private int percent;
 
-    Discount(String type, String percent) {
+    Discount(int seq, String type, int percent) {
+        this.seq = seq;
         this.type = type;
         this.percent = percent;
+    }
+
+    public int getSeq() {
+        return this.seq;
     }
 
     public String getType() {
         return this.type;
     }
 
-    public String getPercent() {
+    public int getPercent() {
         return this.percent;
+    }
+
+    public static Discount fromInt(int discountChoice) {
+        for (Discount d : Discount.values()){
+            if (d.seq == discountChoice){
+                return d;
+            }
+        }
+        return null;
     }
 
     public abstract BigDecimal discountPrice(BigDecimal totalPrice);

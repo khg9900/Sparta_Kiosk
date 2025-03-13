@@ -97,26 +97,21 @@ public class Kiosk {
                         // 할인 정보
                         System.out.println("\n할인 정보를 입력해주세요.");
                         for (Discount d : Discount.values()) {
-                            System.out.println((d.ordinal() + 1) + ". " + d.getType() + " : " + d.getPercent());
+                            System.out.println((d.ordinal() + 1) + ". " + d.getType() + " : " + d.getPercent() + "%");
                         }
 
                         // 할인 선택
                         int discountChoice = getIntInput(sc);
-                        Discount discount;
-                        switch (discountChoice) {
-                            case 1: {
-                                cart.setTotalPrice(Discount.MILITARY.discountPrice(cart.getTotalPrice()));
-                                break;
-                            }
-                            case 2: {
-                                cart.setTotalPrice(Discount.STUDENT.discountPrice(cart.getTotalPrice()));
-                                break;
-                            }
-                            case 3: {
-                                cart.setTotalPrice(Discount.GENERAL.discountPrice(cart.getTotalPrice()));
-                                break;
-                            }
+                        // enum으로 변환
+                        Discount discount = Discount.fromInt(discountChoice);
+
+                        if (discount == null) { // 다른 숫자 입력했을 경우 넘기기
+                            System.out.println("잘못된 입력입니다.");
+                            continue;
                         }
+
+                        // 할인율 적용
+                        cart.setTotalPrice(discount.discountPrice(cart.getTotalPrice()));
 
                         // 주문
                         cart.orderCartItems();

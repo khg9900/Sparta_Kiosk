@@ -2,6 +2,7 @@ package com.example.kiosk;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Menu {
 
@@ -29,7 +30,9 @@ public class Menu {
 
     // 카테고리 이름 리턴
     public String getCategoryName() {
-        return this.categoryName;
+        return this.
+
+                categoryName;
     }
 
     // List 리턴
