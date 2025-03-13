@@ -21,18 +21,23 @@ public class Menu {
     // List에 포함된 MenuItem을 순차적으로 보여주는 함수
     public void showMenuItems(){
         System.out.println("\n[ "+ this.categoryName.toUpperCase() + " MENU ]");
-        for (int i = 0; i < menuItems.size(); i++) {
-            System.out.print(i+1 + ". ");
-            menuItems.get(i).showMenuItem();
-        }
+//        for (int i = 0; i < menuItems.size(); i++) {
+//            System.out.print(i+1 + ". ");
+//            menuItems.get(i).showMenuItem();
+//        }
+        // for문 스트림으로 변환
+        AtomicInteger i = new AtomicInteger(0); // 인덱스 계산하기 위해서 선언
+        menuItems.forEach(menuItem -> {
+            System.out.print((i.get() + 1) + ". ");
+            menuItems.get(i.get()).showMenuItem();
+            i.getAndIncrement(); // 인덱스 +1
+        });
         System.out.println("0. 뒤로가기");
     }
 
     // 카테고리 이름 리턴
     public String getCategoryName() {
-        return this.
-
-                categoryName;
+        return this.categoryName;
     }
 
     // List 리턴

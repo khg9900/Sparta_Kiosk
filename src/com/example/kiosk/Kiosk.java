@@ -120,18 +120,27 @@ public class Kiosk {
 
                 } else if (categoryChoice == menu.size() + 2) { // 5. 장바구니 삭제
                     // 장바구니 목록 수정
-                    System.out.println("\n주문 취소할 메뉴를 선택해주세요.");
+                    System.out.print("\n현재 장바구니 목록");
                     cart.showCartItems();
 
-                    // 삭제할 메뉴 선택
-                    int removeChoice = getIntInput(sc);
+//                    // 삭제할 메뉴 선택
+//                    int removeChoice = getIntInput(sc);
+//
+//                    // 메뉴 삭제
+//                    try {
+//                        cart.removeCartItem(removeChoice - 1);
+//                    } catch (IndexOutOfBoundsException exception) {
+//                        System.out.println("취소할 메뉴가 없습니다.");
+//                    }
 
-                    // 메뉴 삭제
-                    try {
-                        cart.removeCartItem(removeChoice - 1);
-                    } catch (IndexOutOfBoundsException exception) {
-                        System.out.println("취소할 메뉴가 없습니다.");
-                    }
+                    sc.nextLine(); // 버퍼 비우기
+                    // 문자열 입력받아 스트림으로 메뉴 삭제
+                    System.out.print("\n주문 취소할 메뉴를 선택해주세요: ");
+                    String removeMenu = sc.nextLine();
+                    System.out.println(removeMenu);
+                    cart.removeCartItem(removeMenu);
+
+
                 } else {
                     System.out.println("선택된 메뉴가 없습니다.");
                 }

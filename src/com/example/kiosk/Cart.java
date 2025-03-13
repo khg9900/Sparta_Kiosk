@@ -3,6 +3,8 @@ package com.example.kiosk;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Cart {
 
@@ -32,9 +34,21 @@ public class Cart {
     }
 
     // 장바구니에서 메뉴 삭제하기
-    public void removeCartItem(int number) {
-        this.totalPrice = this.totalPrice.subtract(BigDecimal.valueOf(cartItems.get(number).getMenuPrice()));
-        this.cartItems.remove(number);
+//    public void removeCartItem(int number) {
+//        this.totalPrice = this.totalPrice.subtract(BigDecimal.valueOf(cartItems.get(number).getMenuPrice()));
+//        this.cartItems.remove(number);
+//        System.out.println("주문이 수정되었습니다.");
+//        showCartItems();
+//    }
+
+    // 위 코드를 메뉴 이름을 입력받아 삭제하는 스트림으로 수정
+    public void removeCartItem(String removeMenu) {
+        this.cartItems.stream()
+                .filter(cartItem -> cartItem.getMenuName().equals(removeMenu))
+                .forEach(cartItem -> this.totalPrice = this.totalPrice.subtract(BigDecimal.valueOf(cartItem.getMenuPrice())));
+        this.cartItems = this.cartItems.stream()
+                .filter(cartItem -> !cartItem.getMenuName().equals(removeMenu))
+                .collect(Collectors.toList());
         System.out.println("주문이 수정되었습니다.");
         showCartItems();
     }
