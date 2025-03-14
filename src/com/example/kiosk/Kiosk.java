@@ -115,6 +115,8 @@ public class Kiosk {
 
                         // 주문
                         cart.orderCartItems();
+                        // 주문이 완료되면 프로그램 종료
+                        break;
                     }
                     // 메뉴판 or 다른 숫자 입력시 자동으로 첫 화면으로 이동
 
